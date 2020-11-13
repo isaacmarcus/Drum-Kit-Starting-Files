@@ -4,11 +4,13 @@ for (var i=0;i<drumButtons.length;i++) {
   drumButtons[i].addEventListener("click",function() {
     var buttonInnerHTML = this.innerHTML;
     handleClick(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
   });
 }
 
 document.addEventListener("keydown", function() {
   handleClick(event.key);
+  buttonAnimation(event.key);
 });
 
 function handleClick(e) {
@@ -50,4 +52,12 @@ function handleClick(e) {
 
     default:
   }
+}
+
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey)
+  activeButton.classList.add("pressed");
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
